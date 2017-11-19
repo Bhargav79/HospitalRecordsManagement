@@ -1,0 +1,20 @@
+{
+  "name": "urgentcareproject",
+  "version": "1.0.0",
+  "description": "Urgent Care Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bhargav Krishna Reddy",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "mysql2": "^1.5.0",
+    "request": "^2.83.0",
+    "sequelize": "^4.22.7"
+  }
+}
