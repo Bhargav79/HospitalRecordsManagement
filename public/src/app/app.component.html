@@ -1,0 +1,149 @@
+<div style="position:fixed;width: 100%;" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-pills">
+            <div>
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item ">
+                  <a class="nav-link active navbar-brand" style="padding:1%;" href="">Visit Go Health Urgent</a>
+                </li>
+              </ul>
+            </div>
+    </nav>
+</div>
+
+
+  <div class="container-fluid img-fluid" id="main" style="height:100vh;width:100vw;">
+      <div id="container" class="container-fluid">
+
+            <div class="card container-fluid" style="border-radius: 8px;top: 5vh;">
+                    <div class="card-body container-fluid" style="padding:2%;">
+                            <h3 class="card-title text-center"><strong>Welcome to Patient's Check-In</strong></h3>
+                    
+                            <div class="card-text container-fluid text-center" style="position:relative;top:1vh;height:25vh;">
+                                    
+                                        <form  id="newForm" #newForm="ngForm">
+                                            <div class="row">
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="firstname"><strong>First Name</strong></label>
+                                                    <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]=patient.firstname placeholder="First name"  required #firstname="ngModel">
+                                                    <div *ngIf="firstname.errors && (firstname.touched || firstname.dirty)"  class="alert alert-danger">
+                                                        <div *ngIf="firstname.errors.required">
+                                                        First Name is required.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="lastname"><strong>Last Name</strong></label>
+                                                    <input type="text" class="form-control" id="lastname" name="lastname"[(ngModel)]=patient.lastname placeholder="Last name"  required #lastname="ngModel">
+                                                    <div  *ngIf="lastname.errors && (lastname.touched || lastname.dirty)"  class="alert alert-danger">
+                                                        <div *ngIf="lastname.errors.required">
+                                                            Last Name is required.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="phone"><strong>Phone Number</strong></label>
+                                                    <input type="text" class="form-control" id="phone" name="phone"[(ngModel)]=patient.phone placeholder="mobile" maxlength="10" minlength="10" #phone="ngModel" required>
+                                                    <div  *ngIf="phone.errors && (phone.touched || phone.dirty)" class="alert alert-danger">
+                                                    <div *ngIf="phone.errors.required">
+                                                    Phone Number is required.
+                                                    </div>
+                                                    <div *ngIf="phone.errors.minlength">
+                                                        Phone must have 10 digits
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <label for="dob"><strong>Date Of Birth</strong></label>
+                                                    <input type="text" class="form-control date" id="dob" name="dob" data-date-format="yyyy-mm-dd"[(ngModel)]=patient.dob  placeholder="yyyy-mm-dd" data-provide="datepicker" #dob="ngModel">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="choice"><strong>Do You Have Insurance?</strong></label>
+                                                    Yes<input type="radio"  value="yes"id="yes" name="check" [(ngModel)]=patient.yes  #yes="ngModel" required>
+                                                    No<input type="radio" value="no"id="no" name="check" [(ngModel)]=patient.no  #yes="ngModel" required>
+                                                </div>
+                                            </div>
+                                            <div class="row insurance1">
+                                                    <div class="col-md-3 mb-3">
+                                                            <button class="btn btn-primary container-fluid submit" type="submit" [disabled]="newForm.form.invalid" (click)="send($event)" >Submit</button>
+                                                    </div>
+                                            </div>
+                                        </form>
+                            </div>
+      
+                    </div>
+            </div>
+            <form >
+            <div class="card container-fluid insurance2" style="border-radius: 8px;top: 5vh;">
+                    <div class="card-body container-fluid" style="padding:2%;">
+                        <div class="card-text container-fluid text-center" style="position:relative;top:1vh;height:15vh;">
+                            <form  id="newForm1" #newForm1="ngForm">
+                                <div class="row">
+                               
+                                    <div class="col-md-4 mb-3">
+                                        <label for="insurance"><strong>Insurance Carrier</strong></label>
+                                        <select id="insurance" name="insurance" class="form-control"
+                                            required [(ngModel)]="patient.insurance" #insurance="ngModel" >
+                                            <option *ngFor="let i of insurances" [value]="i">{{i}}</option>
+                                        </select>
+                                        <div *ngIf="insurance.errors && (insurance.touched || insurance.dirty)"  class="alert alert-danger">
+                                            <div *ngIf="insurance.errors.required">
+                                            Insurance Carrier Name is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="insuranceid"><strong>Insurance ID</strong></label>
+                                        <input type="text" class="form-control" id="insuranceid" name="insuranceid" [(ngModel)]=patient.insuranceid placeholder="Insurance ID" #insuranceid="ngModel" required>
+                                        <div *ngIf="insuranceid.errors && (insuranceid.touched || insuranceid.dirty)"  class="alert alert-danger">
+                                            <div *ngIf="insuranceid.errors.required">
+                                            Insurance ID is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <button class="btn btn-primary container-fluid submitdetails" style="margin-top:3.5vh;"type="submit" [(ngModel)]="getG" name="getG" [disabled]="newForm.form.invalid || newForm1.form.invalid" (click)="verify($event)"ngDefaultControl>Submit Details</button>
+                                    </div>
+                                
+                                </div>
+                            </form>
+                        </div>
+                    
+                    </div>
+            </div>
+
+            <div class="card container-fluid insurance3" style="border-radius: 8px;">
+                <div class="card-body container-fluid" style="padding:1%;">
+                    <div class="card-text container-fluid text-center" style="position:relative;">
+                        
+                            <div class="row done1">
+                                <h2 class="col-md-6 mb-3"><strong>Thank You For Registering</strong> </h2>
+                                <div class="col-md-6 mb-3">
+                                        <a href="https://www.gohealthuc.com/about/"><button class="btn btn-primary container-fluid"type="submit">Click Here For More Details</button></a>
+                                </div>
+                            
+                            </div>
+
+                            <div class="row done2">
+                                <h2 class="col-md-3 mb-3">Insurance Status: {{coveragestatus}} </h2>
+                                <h2 class="col-md-3 mb-3">Copay: $ {{copay}} </h2>
+                                <div class="col-md-3 mb-3">
+                                    <button class="btn btn-primary container-fluid reenter"type="submit">Re Enter</button>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                        <a href="https://www.gohealthuc.com/about/"><button class="btn btn-primary container-fluid"type="submit">Click Here For More Details</button></a>
+                                </div>
+                            
+                            </div>
+                    
+                    </div>
+                
+                </div>
+            </div>
+           </form>
+         </div>
+    </div>
+
+
+ 

@@ -7,7 +7,7 @@ const appController = require('./controller/appController');
 const databaseController = require('./databaseModel/databaseController');
 appController(app);
 databaseController(app);
-app.use('/', express.static(__dirname + './view'));
+app.use('/', express.static(__dirname + './public'));
 app.listen(port);
 
 
